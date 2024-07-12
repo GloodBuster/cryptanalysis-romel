@@ -1,12 +1,14 @@
 import string
 
+extra_characters = " ,.ñÑáéíóúÁÉÍÓÚ!¡?¿;:()[]{}_@0123456789"
+
 def clean_text(texto):
-    allow_characters = set(string.ascii_letters + " " + "," + "." + "ñ" + "Ñ")
+    allow_characters = set(string.ascii_letters + extra_characters)
     clean_text = ''.join(char for char in texto if char in allow_characters)
     return clean_text
 
 def complete_dictionary(dictionary):
-    alphabet = string.ascii_letters + "ñ" + "Ñ"
+    alphabet = string.ascii_letters + extra_characters
     used_values = set(dictionary.values())
     
     for char in alphabet:
@@ -19,8 +21,7 @@ def complete_dictionary(dictionary):
     return dictionary
 
 def generate_substitution_dictionary(key):
-    alphabet = string.ascii_letters + "ñ" + "Ñ"
-    key = key.upper()
+    alphabet = string.ascii_letters + extra_characters
     
     # Eliminar duplicados de la clave
     key = ''.join(dict.fromkeys(key))
